@@ -1,32 +1,30 @@
 // @ts-ignore
 /* eslint-disable */
 import { request } from 'umi';
+import http from '@/utils/http';
 
 /** 获取当前的用户 GET /api/currentUser */
-export async function currentUser(options?: { [key: string]: any }) {
-  return request<API.CurrentUser>('/api/currentUser', {
-    method: 'GET',
-    ...(options || {}),
+export async function currentUser(): Promise<any> {
+  return http({
+    url: '/user/getUserInfo',
+    method: 'get',
   });
 }
 
 /** 退出登录接口 POST /api/login/outLogin */
-export async function outLogin(options?: { [key: string]: any }) {
-  return request<Record<string, any>>('/api/login/outLogin', {
-    method: 'POST',
-    ...(options || {}),
+export async function outLogin() {
+  return http({
+    url: '/user/logout',
+    method: 'post',
   });
 }
 
 /** 登录接口 POST /api/login/account */
-export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
-  return request<API.LoginResult>('/api/login/account', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
+export async function login(data: API.LoginParams, options?: { [key: string]: any }): Promise<any> {
+  return http({
+    url: '/user/non/login',
+    method: 'post',
+    data,
   });
 }
 
