@@ -9,9 +9,6 @@ interface ResponseType {
 }
 
 const msg = new Map([[405, '请求类型错误']]);
-const Authorization = sessionStorage.getItem('uid')
-  ? `Bearer ${sessionStorage.getItem('uid')}`
-  : null;
 const instance = axios.create({
   baseURL: 'http://localhost:8060',
   timeout: 10000,
@@ -20,6 +17,9 @@ const instance = axios.create({
 });
 instance.interceptors.request.use(
   (config) => {
+    const Authorization = sessionStorage.getItem('uid')
+      ? `Bearer ${sessionStorage.getItem('uid')}`
+      : null;
     Reflect.set(config.headers, 'Authorization', Authorization);
     return config;
   },
