@@ -10,7 +10,7 @@ interface ResponseType {
 
 const msg = new Map([[405, '请求类型错误']]);
 const instance = axios.create({
-  baseURL: 'http://localhost:8060',
+  baseURL: API_URL,
   timeout: 10000,
   headers: { 'Content-Type': 'application/json;charset=UTF-8' },
   validateStatus: () => true,
