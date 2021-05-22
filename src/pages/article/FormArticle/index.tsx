@@ -1,6 +1,6 @@
 import { Button, Card, Form, Input, message, Space } from 'antd';
 import type { Dispatch } from 'dva';
-import { connect, useLocation, history } from 'umi';
+import { useLocation, history } from 'umi';
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
@@ -55,7 +55,7 @@ const FormArticle: FC<FormArticleProps> = (props) => {
     }
   };
   useEffect(() => {
-    handleFetchArticle().then();
+    id && handleFetchArticle().then();
   }, [id]);
   return (
     <PageContainer>
@@ -138,6 +138,4 @@ const FormArticle: FC<FormArticleProps> = (props) => {
   );
 };
 
-export default connect(({ loading }: { loading: { effects: Record<string, boolean> } }) => ({
-  submitting: loading.effects['articleAndFormArticle/submitRegularForm'],
-}))(FormArticle);
+export default FormArticle;
