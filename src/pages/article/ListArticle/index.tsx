@@ -10,10 +10,14 @@ import { history } from 'umi';
 import { saveArticle } from '@/pages/article/FormArticle/service';
 
 const handleQueryRule = async ({ params, sorter }: any) => {
-  console.log(sorter);
+  const sort: Record<string, string> = {};
+  Object.entries(sorter).forEach((item) => {
+    Reflect.set(sort, 'field', item[0]);
+    Reflect.set(sort, 'order', item[1]);
+  });
   const {
     data: { records, total },
-  } = await queryRule({ ...params, isOnlyRelease: false });
+  } = await queryRule({ ...params, ...sort, isOnlyRelease: false });
   return {
     data: records,
     success: true,
@@ -59,11 +63,13 @@ const TableList: React.FC<{}> = () => {
       title: '发布时间',
       dataIndex: 'createTime',
       hideInSearch: true,
+      sorter: true,
     },
     {
       title: '修改时间',
       dataIndex: 'updateTime',
       hideInSearch: true,
+      sorter: true,
     },
     {
       title: '操作',
