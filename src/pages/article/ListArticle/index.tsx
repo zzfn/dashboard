@@ -9,7 +9,7 @@ import { queryRule, removeRule } from './service';
 import { history } from 'umi';
 import { saveArticle } from '@/pages/article/FormArticle/service';
 
-const handleQueryRule = async ({ params, sorter }: any) => {
+const handleQueryRule = async ({ params = {}, sorter = {} }: any) => {
   const sort: Record<string, string> = {};
   Object.entries(sorter).forEach((item) => {
     Reflect.set(sort, 'field', item[0]);
