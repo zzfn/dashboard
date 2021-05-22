@@ -1,4 +1,4 @@
-﻿export default [
+export default [
   {
     path: '/user',
     layout: false,
@@ -37,6 +37,12 @@
     ],
   },
   {
+    name: 'list-article',
+    icon: 'smile',
+    path: '/list-article',
+    component: './article/ListArticle',
+  },
+  {
     name: 'list.table-list',
     icon: 'table',
     path: '/list',
@@ -45,6 +51,13 @@
   {
     path: '/',
     redirect: '/welcome',
+  },
+  {
+    name: 'form-article',
+    icon: 'smile',
+    path: '/form-article',
+    hideInMenu: true,
+    component: './article/FormArticle',
   },
   {
     component: './404',
