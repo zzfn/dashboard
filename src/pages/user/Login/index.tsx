@@ -7,7 +7,7 @@ import {
   WeiboCircleOutlined,
 } from '@ant-design/icons';
 import { Alert, Space, message, Tabs } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProForm, { ProFormCaptcha, ProFormCheckbox, ProFormText } from '@ant-design/pro-form';
 import { useIntl, Link, history, FormattedMessage, SelectLang, useModel } from 'umi';
 import Footer from '@/components/Footer';
@@ -56,24 +56,24 @@ const Login: React.FC = () => {
       });
     }
   };
-
+  useEffect(() => {
+    sessionStorage.removeItem('uid');
+  }, []);
   const handleSubmit = async (values: API.LoginParams) => {
     setSubmitting(true);
     try {
       // 登录
-      const msg = await login({ ...values, type });
-      if (msg.status === 'ok') {
-        const defaultloginSuccessMessage = intl.formatMessage({
-          id: 'pages.login.success',
-          defaultMessage: '登录成功！',
-        });
-        message.success(defaultloginSuccessMessage);
+      const { msg, data } = await login({ ...values, type });
+      if (msg === 'success') {
+        const { token } = data;
+        sessionStorage.setItem('uid', token);
+        message.success('登录成功');
         await fetchUserInfo();
         goto();
         return;
       }
       // 如果失败去设置用户错误信息
-      setUserLoginState(msg);
+      setUserLoginState({ type: 'account', status: 'error' });
     } catch (error) {
       const defaultloginFailureMessage = intl.formatMessage({
         id: 'pages.login.failure',
