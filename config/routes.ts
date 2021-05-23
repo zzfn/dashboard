@@ -43,6 +43,12 @@ export default [
     component: './article/ListArticle',
   },
   {
+    name: 'list-favorite',
+    icon: 'smile',
+    path: '/list-favorite',
+    component: './favorite/ListFavorite',
+  },
+  {
     name: 'list.table-list',
     icon: 'table',
     path: '/list',
@@ -58,6 +64,14 @@ export default [
     path: '/form-article',
     hideInMenu: true,
     component: './article/FormArticle',
+  },
+
+  {
+    name: 'form-favorite',
+    icon: 'smile',
+    path: '/form-favorite',
+    hideInMenu: true,
+    component: './favorite/FormFavorite',
   },
   {
     component: './404',
