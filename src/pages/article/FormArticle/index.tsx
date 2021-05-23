@@ -43,6 +43,7 @@ const FormArticle: FC<FormArticleProps> = (props) => {
 
   const onFinish = async (values: Record<string, any>): Promise<void> => {
     const { data } = await saveArticle({ ...values, isRelease, id });
+    data && message.success('操作成功');
     data && history.replace({ pathname: 'form-article', query: { id: data as string } });
   };
 
