@@ -11,6 +11,6 @@ const Markdown: ({ value, onChange }: { value?: any; onChange?: any }) => JSX.El
   value = '',
   onChange,
 }): JSX.Element => {
-  return <Editor value={value} onChange={(val) => onChange(val)} plugins={plugins} />;
+  return <Editor mode={'tab'} value={value} onChange={(val) => onChange(val)} plugins={plugins} />;
 };
 export default Markdown;
