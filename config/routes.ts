@@ -38,21 +38,22 @@ export default [
   },
   {
     name: 'list-article',
-    icon: 'smile',
+    icon: 'EditOutlined',
     path: '/list-article',
     component: './article/ListArticle',
   },
   {
     name: 'list-favorite',
-    icon: 'smile',
+    icon: 'ShareAltOutlined',
     path: '/list-favorite',
     component: './favorite/ListFavorite',
   },
   {
-    name: 'list.table-list',
-    icon: 'table',
-    path: '/list',
-    component: './TableList',
+    name: 'list-dictionary',
+    icon: 'smile',
+    path: '/list-dictionary',
+    hideInMenu: true,
+    component: './dictionary/ListDictionary',
   },
   {
     path: '/',
@@ -65,13 +66,18 @@ export default [
     hideInMenu: true,
     component: './article/FormArticle',
   },
-
   {
     name: 'form-favorite',
     icon: 'smile',
     path: '/form-favorite',
     hideInMenu: true,
     component: './favorite/FormFavorite',
+  },
+  {
+    name: 'dictionary',
+    icon: 'SendOutlined',
+    path: '/dictionary',
+    component: './dictionary/Dictionary',
   },
   {
     component: './404',
