@@ -1,12 +1,14 @@
 import { Button, Card, Form, Input, message, Select } from 'antd';
 import type { FC } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
-import { sendMsg } from '@/pages/talk/FormTalk/service';
+import { botList, sendMsg } from '@/pages/talk/FormTalk/service';
+import { useEffect, useState } from 'react';
 
 const FormItem = Form.Item;
 
 const FormTalk: FC = () => {
   const [form] = Form.useForm();
+  const [list, setList] = useState([]);
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -30,7 +32,11 @@ const FormTalk: FC = () => {
     const { errcode } = await sendMsg(values);
     errcode === 0 && message.success('操作成功');
   };
-
+  useEffect(() => {
+    botList().then(({ data }) => {
+      setList(data);
+    });
+  }, []);
   return (
     <PageContainer>
       <Card bordered={false}>
@@ -42,6 +48,13 @@ const FormTalk: FC = () => {
           name="basic"
           onFinish={onFinish}
         >
+          <FormItem label={'机器人'} name="bot">
+            <Select placeholder={'选择机器人'}>
+              {list.map((n: any) => (
+                <Select.Option value={n.id}>{n.name}</Select.Option>
+              ))}
+            </Select>
+          </FormItem>
           <FormItem label={'消息类型'} name="msgtype">
             <Select placeholder={'选择消息类型'}>
               <Select.Option value="text">文本消息</Select.Option>
