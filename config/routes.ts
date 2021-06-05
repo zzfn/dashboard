@@ -80,6 +80,12 @@ export default [
     component: './dictionary/Dictionary',
   },
   {
+    name: 'talk',
+    icon: 'smile',
+    path: '/form-talk',
+    component: './talk/FormTalk',
+  },
+  {
     component: './404',
   },
 ];
