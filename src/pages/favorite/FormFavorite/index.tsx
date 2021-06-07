@@ -1,21 +1,14 @@
 import { Button, Card, Form, Input, message, Space } from 'antd';
-import type { Dispatch } from 'dva';
-import { useLocation, history } from 'umi';
+import { history, useLocation } from 'umi';
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
-import { saveFavorite, fetchFavorite } from '@/pages/favorite/FormFavorite/service';
+import { fetchFavorite, saveFavorite } from '@/pages/favorite/FormFavorite/service';
 import SelectCode from '@/components/SelectCode';
 
 const FormItem = Form.Item;
 
-type FormFavoriteProps = {
-  submitting: boolean;
-  dispatch: Dispatch;
-};
-
-const FormFavorite: FC<FormFavoriteProps> = (props) => {
-  const { submitting } = props;
+const FormFavorite: FC = () => {
   const [form] = Form.useForm();
   const location = useLocation();
 
@@ -41,7 +34,8 @@ const FormFavorite: FC<FormFavoriteProps> = (props) => {
   };
 
   const onFinish = async (values: Record<string, any>): Promise<void> => {
-    const { data } = await saveFavorite({ ...values, isRelease, id });
+    const { data, code } = await saveFavorite({ ...values, isRelease, id });
+    code === 0 && message.success('操作成功');
     data && history.replace({ pathname: 'form-favorite', query: { id: data as string } });
   };
 
@@ -142,12 +136,7 @@ const FormFavorite: FC<FormFavoriteProps> = (props) => {
           </FormItem>
           <FormItem {...submitFormLayout} style={{ marginTop: 32 }}>
             <Space>
-              <Button
-                onClick={() => setIsRelease(true)}
-                type="primary"
-                htmlType="submit"
-                loading={submitting}
-              >
+              <Button onClick={() => setIsRelease(true)} type="primary" htmlType="submit">
                 发布
               </Button>
               <Button onClick={() => setIsRelease(false)} htmlType="submit">
