@@ -51,7 +51,9 @@ const FormTalk: FC = () => {
           <FormItem label={'机器人'} name="bot">
             <Select placeholder={'选择机器人'}>
               {list.map((n: any) => (
-                <Select.Option value={n.id}>{n.name}</Select.Option>
+                <Select.Option key={n.id} value={n.id}>
+                  {n.name}
+                </Select.Option>
               ))}
             </Select>
           </FormItem>
