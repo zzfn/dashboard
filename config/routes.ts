@@ -16,10 +16,10 @@ export default [
     ],
   },
   {
-    path: '/welcome',
-    name: 'welcome',
-    icon: 'smile',
-    component: './Welcome',
+    name: 'home',
+    icon: 'dashboard',
+    path: '/home',
+    component: './home/Home',
   },
   {
     path: '/admin',
@@ -57,7 +57,7 @@ export default [
   },
   {
     path: '/',
-    redirect: '/welcome',
+    redirect: '/home',
   },
   {
     name: 'form-article',
