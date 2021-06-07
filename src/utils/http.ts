@@ -6,6 +6,7 @@ interface ResponseType {
   msg?: string;
   data?: unknown;
   code?: number;
+  errcode?: number;
 }
 
 const msg = new Map([
