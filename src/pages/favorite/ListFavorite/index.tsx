@@ -6,7 +6,7 @@ import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
 import type { TableListItem } from './data.d';
 import { queryRule, removeRule } from './service';
-import { history } from 'umi';
+import { history, Access, useAccess } from 'umi';
 
 const handleQueryRule = async (params: any) => {
   const {
@@ -19,6 +19,7 @@ const handleQueryRule = async (params: any) => {
   };
 };
 const TableList: React.FC<{}> = () => {
+  const access = useAccess();
   const actionRef = useRef<ActionType>();
   const handleRemove = (row: TableListItem) => async () => {
     message.loading('正在删除');
@@ -34,6 +35,11 @@ const TableList: React.FC<{}> = () => {
     {
       title: '标题',
       dataIndex: 'title',
+      render: (_, record) => (
+        <a target={'_blank'} href={record.link}>
+          {record.title}
+        </a>
+      ),
     },
     {
       title: '是否发布',
@@ -70,6 +76,7 @@ const TableList: React.FC<{}> = () => {
       title: '操作',
       dataIndex: 'option',
       valueType: 'option',
+      hideInTable: !access.canAdmin,
       render: (_, record) => (
         <Space>
           <a onClick={() => history.push({ pathname: '/form-favorite', query: { id: record.id } })}>
@@ -87,12 +94,14 @@ const TableList: React.FC<{}> = () => {
         actionRef={actionRef}
         rowKey="id"
         toolBarRender={() => [
-          <Button
-            type="primary"
-            onClick={() => history.push({ pathname: 'form-favorite', query: {} })}
-          >
-            <PlusOutlined /> 新建
-          </Button>,
+          <Access accessible={access.canAdmin}>
+            <Button
+              type="primary"
+              onClick={() => history.push({ pathname: 'form-favorite', query: {} })}
+            >
+              <PlusOutlined /> 新建
+            </Button>
+          </Access>,
         ]}
         request={(params) => handleQueryRule(params)}
         columns={columns}
