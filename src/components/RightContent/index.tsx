@@ -60,6 +60,7 @@ const GlobalHeaderRight: React.FC = () => {
       >
         <QuestionCircleOutlined />
       </span>
+      <span style={{ color: '#fff' }}>{initialState.currentUser?.nickName}</span>
       <Avatar />
       {REACT_APP_ENV && (
         <span>
