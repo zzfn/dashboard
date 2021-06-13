@@ -36,11 +36,11 @@ const Model: ModelType = {
 
   effects: {
     *fetch(_, { call, put }) {
-      const response = yield call(fakeChartData);
-      yield put({
-        type: 'save',
-        payload: response,
-      });
+      // const response = yield call(fakeChartData);
+      // yield put({
+      //   type: 'save',
+      //   payload: response,
+      // });
       const { data } = yield call(getTags);
       const { data: a } = yield call(getAll);
       yield put({

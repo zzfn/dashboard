@@ -1,6 +1,6 @@
 import { Col, Row } from 'antd';
 import React, { Component } from 'react';
-import { GridContent } from '@ant-design/pro-layout';
+import { GridContent, PageContainer } from '@ant-design/pro-layout';
 import type { RangePickerProps } from 'antd/es/date-picker/generatePicker';
 import type moment from 'moment';
 import type { Dispatch } from 'umi';
@@ -59,21 +59,23 @@ class Home extends Component<HomeProps, HomeState> {
     const { visitData, salesTypeData } = homeAndHome;
 
     return (
-      <GridContent>
-        <React.Fragment>
-          <IntroduceRow loading={loading} visitData={visitData} />
-          <Row
-            gutter={24}
-            style={{
-              marginTop: 24,
-            }}
-          >
-            <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-              <ProportionSales loading={loading} salesPieData={salesTypeData} />
-            </Col>
-          </Row>
-        </React.Fragment>
-      </GridContent>
+      <PageContainer>
+        <GridContent>
+          <React.Fragment>
+            <IntroduceRow loading={loading} visitData={visitData} />
+            <Row
+              gutter={24}
+              style={{
+                marginTop: 24,
+              }}
+            >
+              <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+                <ProportionSales loading={loading} salesPieData={salesTypeData} />
+              </Col>
+            </Row>
+          </React.Fragment>
+        </GridContent>
+      </PageContainer>
     );
   }
 }
