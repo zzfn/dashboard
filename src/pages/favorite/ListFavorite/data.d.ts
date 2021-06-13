@@ -1,6 +1,7 @@
 export type TableListItem = {
   id: string;
   title: string;
+  link: string;
   tag: string;
   isRelease: boolean;
   orderNum: number;

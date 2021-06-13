@@ -83,6 +83,7 @@ export default [
     name: 'talk',
     icon: 'smile',
     path: '/form-talk',
+    access: 'canAdmin',
     component: './talk/FormTalk',
   },
   {

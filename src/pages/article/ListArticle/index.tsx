@@ -46,6 +46,14 @@ const TableList: React.FC<{}> = () => {
     {
       title: '标题',
       dataIndex: 'title',
+      render: (_, record) =>
+        record.isRelease ? (
+          <a target={'_blank'} href={`https://zzfzzf.com/article/${record.id}`}>
+            {record.title}
+          </a>
+        ) : (
+          _
+        ),
     },
     {
       title: '是否发布',

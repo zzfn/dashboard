@@ -5,7 +5,7 @@ import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import { EditableProTable } from '@ant-design/pro-table';
 import type { TableListItem, TableListParams } from './data.d';
 import { addRule, queryRule, removeRule } from './service';
-import { useLocation } from 'umi';
+import { useLocation, useAccess } from 'umi';
 
 /**
  * 添加节点
@@ -40,6 +40,7 @@ const handleQueryRule = async (params: TableListParams) => {
  */
 
 const TableList: React.FC<{}> = () => {
+  const access = useAccess();
   const actionRef = useRef<ActionType>();
   const [editableKeys, setEditableKeys] = useState<React.Key[]>([]);
   const location = useLocation();
@@ -72,6 +73,7 @@ const TableList: React.FC<{}> = () => {
       title: '操作',
       dataIndex: 'option',
       valueType: 'option',
+      hideInTable: !access.canAdmin,
       render: (_, record, index, action) => (
         <>
           <a
@@ -91,9 +93,13 @@ const TableList: React.FC<{}> = () => {
   return (
     <PageContainer>
       <EditableProTable<TableListItem>
-        recordCreatorProps={{
-          record: () => ({ id: '0', typeCode: code, code: '', name: '' }),
-        }}
+        recordCreatorProps={
+          access.canAdmin
+            ? {
+                record: () => ({ id: '0', typeCode: code, code: '', name: '' }),
+              }
+            : false
+        }
         actionRef={actionRef}
         rowKey="id"
         editable={{

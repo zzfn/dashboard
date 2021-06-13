@@ -5,7 +5,7 @@ import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import { EditableProTable } from '@ant-design/pro-table';
 import type { TableListItem } from './data.d';
 import { addRule, queryRule, removeRule } from './service';
-import { history } from 'umi';
+import { history, useAccess } from 'umi';
 
 /**
  * 添加节点
@@ -51,7 +51,8 @@ const handleQueryRule = async (params: any): Promise<any> => {
     data,
   };
 };
-const TableList: React.FC<{}> = () => {
+const TableList: React.FC = () => {
+  const access = useAccess();
   const [editableKeys, setEditableKeys] = useState<React.Key[]>([]);
   const actionRef = useRef<ActionType>();
   const columns: ProColumns<TableListItem>[] = [
@@ -78,6 +79,7 @@ const TableList: React.FC<{}> = () => {
       title: '操作',
       dataIndex: 'option',
       valueType: 'option',
+      hideInTable: !access.canAdmin,
       render: (_, record, index, action) => (
         <Space>
           <a
@@ -97,9 +99,13 @@ const TableList: React.FC<{}> = () => {
   return (
     <PageContainer>
       <EditableProTable<TableListItem>
-        recordCreatorProps={{
-          record: () => ({ id: '0', code: '', name: '' }),
-        }}
+        recordCreatorProps={
+          access.canAdmin
+            ? {
+                record: () => ({ id: '0', code: '', name: '' }),
+              }
+            : false
+        }
         editable={{
           type: 'multiple',
           editableKeys,
