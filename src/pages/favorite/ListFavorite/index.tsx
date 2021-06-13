@@ -18,7 +18,7 @@ const handleQueryRule = async (params: any) => {
     total,
   };
 };
-const TableList: React.FC<{}> = () => {
+const TableList: React.FC = () => {
   const access = useAccess();
   const actionRef = useRef<ActionType>();
   const handleRemove = (row: TableListItem) => async () => {
