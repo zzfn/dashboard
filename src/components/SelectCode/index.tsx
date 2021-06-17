@@ -20,8 +20,9 @@ const SelectCode: React.FC<SelectCodeProps> = (props) => {
   return (
     <Select
       {...props}
+      allowClear
       showSearch
-      style={{ width: 200 }}
+      style={{ width: '100%' }}
       filterOption={(input, option: any) =>
         option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
       }

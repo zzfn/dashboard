@@ -8,6 +8,7 @@ import type { TableListItem } from './data.d';
 import { queryRule, removeRule } from './service';
 import { history, Access, useAccess } from 'umi';
 import { saveArticle } from '@/pages/article/FormArticle/service';
+import SelectCode from '@/components/SelectCode';
 
 const handleQueryRule = async ({ params = {}, sorter = {} }: any) => {
   const sort: Record<string, string> = {};
@@ -64,6 +65,12 @@ const TableList: React.FC<{}> = () => {
       },
     },
     {
+      title: '标签',
+      dataIndex: 'tag',
+      hideInTable: true,
+      renderFormItem: () => <SelectCode placeholder={'请选择标签'} code={'TAG'} />,
+    },
+    {
       title: '排序号',
       dataIndex: 'orderNum',
       hideInSearch: true,
@@ -103,6 +110,7 @@ const TableList: React.FC<{}> = () => {
         headerTitle="查询表格"
         actionRef={actionRef}
         rowKey="id"
+        search={{ span: 6 }}
         toolBarRender={() => [
           <Access accessible={access.canAdmin}>
             <Button
