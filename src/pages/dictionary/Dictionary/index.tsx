@@ -76,6 +76,10 @@ const TableList: React.FC = () => {
       dataIndex: 'code',
     },
     {
+      title: '排序号',
+      dataIndex: 'orderNum',
+    },
+    {
       title: '操作',
       dataIndex: 'option',
       valueType: 'option',
