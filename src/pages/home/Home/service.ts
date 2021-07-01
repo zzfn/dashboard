@@ -16,3 +16,9 @@ export async function getAll() {
     method: 'get',
   });
 }
+export async function getServerInfo() {
+  return http({
+    url: '/trace/server/info',
+    method: 'get',
+  });
+}

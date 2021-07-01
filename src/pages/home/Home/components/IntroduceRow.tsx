@@ -15,14 +15,14 @@ const topColResponsiveProps = {
 const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: VisitDataType[] }) => (
   <Row gutter={24}>
     {visitData.map((node) => (
-      <Col {...topColResponsiveProps}>
+      <Col key={node.label} {...topColResponsiveProps}>
         <ChartCard
           bordered={false}
           title={node.label}
           loading={loading}
           total={numeral(node.value).format('0,0')}
           contentHeight={46}
-        ></ChartCard>
+        />
       </Col>
     ))}
   </Row>

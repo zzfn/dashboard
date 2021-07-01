@@ -1,135 +1,59 @@
-import { InfoCircleOutlined } from '@ant-design/icons';
-import { Card, Col, Row, Table, Tooltip } from 'antd';
-import { FormattedMessage } from 'umi';
-import React from 'react';
-import numeral from 'numeral';
-import type { SearchDataType, VisitDataType } from '../data.d';
-
-import { MiniArea } from './Charts';
-import NumberInfo from './NumberInfo';
-import Trend from './Trend';
+import { Card, Table } from 'antd';
 import styles from '../style.less';
 
 const columns = [
   {
-    title: <FormattedMessage id="homeandhome.table.rank" defaultMessage="Rank" />,
-    dataIndex: 'index',
-    key: 'index',
+    title: '节点名',
+    dataIndex: 'name',
   },
   {
-    title: (
-      <FormattedMessage id="homeandhome.table.search-keyword" defaultMessage="Search keyword" />
+    title: '在线时间',
+    dataIndex: 'uptime',
+  },
+  {
+    title: '负载',
+    dataIndex: 'load_1',
+  },
+  {
+    title: '处理器',
+    dataIndex: 'cpu',
+    render: (_: string) => <span>{_}%</span>,
+    sorter: (a: { count: number }, b: { count: number }) => a.count - b.count,
+  },
+  {
+    title: '内存',
+    dataIndex: 'ram',
+    render: (_: string, row: any) => (
+      <span>{((row.memory_used / row.memory_total) * 100).toFixed(2)}%</span>
     ),
-    dataIndex: 'keyword',
-    key: 'keyword',
-    render: (text: React.ReactNode) => <a href="/">{text}</a>,
-  },
-  {
-    title: <FormattedMessage id="homeandhome.table.users" defaultMessage="Users" />,
-    dataIndex: 'count',
-    key: 'count',
     sorter: (a: { count: number }, b: { count: number }) => a.count - b.count,
     className: styles.alignRight,
   },
   {
-    title: <FormattedMessage id="homeandhome.table.weekly-range" defaultMessage="Weekly Range" />,
-    dataIndex: 'range',
-    key: 'range',
-    sorter: (a: { range: number }, b: { range: number }) => a.range - b.range,
-    render: (text: React.ReactNode, record: { status: number }) => (
-      <Trend flag={record.status === 1 ? 'down' : 'up'}>
-        <span style={{ marginRight: 4 }}>{text}%</span>
-      </Trend>
+    title: '硬盘',
+    dataIndex: 'hdd',
+    render: (_: string, row: any) => (
+      <span>{((row.hdd_used / row.hdd_total) * 100.0).toFixed(2)}%</span>
     ),
+    sorter: (a: { range: number }, b: { range: number }) => a.range - b.range,
   },
 ];
 
-const TopSearch = ({
-  loading,
-  visitData2,
-  searchData,
-  dropdownGroup,
-}: {
-  loading: boolean;
-  visitData2: VisitDataType[];
-  dropdownGroup: React.ReactNode;
-  searchData: SearchDataType[];
-}) => (
+const TopSearch = ({ loading, searchData }: { loading: boolean; searchData: any }) => (
   <Card
+    extra={new Date(searchData.updated * 1000).toLocaleString()}
     loading={loading}
-    bordered={false}
-    title={
-      <FormattedMessage
-        id="homeandhome.analysis.online-top-search"
-        defaultMessage="Online Top Search"
-      />
-    }
-    extra={dropdownGroup}
+    bordered={true}
+    title={'服务器监控'}
     style={{
       height: '100%',
     }}
   >
-    <Row gutter={68}>
-      <Col sm={12} xs={24} style={{ marginBottom: 24 }}>
-        <NumberInfo
-          subTitle={
-            <span>
-              <FormattedMessage
-                id="homeandhome.analysis.search-users"
-                defaultMessage="search users"
-              />
-              <Tooltip
-                title={
-                  <FormattedMessage
-                    id="homeandhome.analysis.introduce"
-                    defaultMessage="introduce"
-                  />
-                }
-              >
-                <InfoCircleOutlined style={{ marginLeft: 8 }} />
-              </Tooltip>
-            </span>
-          }
-          gap={8}
-          total={numeral(12321).format('0,0')}
-          status="up"
-          subTotal={17.1}
-        />
-        <MiniArea line height={45} data={visitData2} />
-      </Col>
-      <Col sm={12} xs={24} style={{ marginBottom: 24 }}>
-        <NumberInfo
-          subTitle={
-            <span>
-              <FormattedMessage
-                id="homeandhome.analysis.per-capita-search"
-                defaultMessage="Per Capita Search"
-              />
-              <Tooltip
-                title={
-                  <FormattedMessage
-                    id="homeandhome.analysis.introduce"
-                    defaultMessage="introduce"
-                  />
-                }
-              >
-                <InfoCircleOutlined style={{ marginLeft: 8 }} />
-              </Tooltip>
-            </span>
-          }
-          total={2.7}
-          status="down"
-          subTotal={26.2}
-          gap={8}
-        />
-        <MiniArea line height={45} data={visitData2} />
-      </Col>
-    </Row>
     <Table<any>
-      rowKey={(record) => record.index}
+      rowKey={'host'}
       size="small"
       columns={columns}
-      dataSource={searchData}
+      dataSource={searchData.servers}
       pagination={{
         style: { marginBottom: 0 },
         pageSize: 5,

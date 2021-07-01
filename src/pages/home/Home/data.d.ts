@@ -39,4 +39,5 @@ export type AnalysisData = {
   salesTypeDataOnline: VisitDataType[];
   salesTypeDataOffline: VisitDataType[];
   radarData: RadarData[];
+  serverData: any;
 };

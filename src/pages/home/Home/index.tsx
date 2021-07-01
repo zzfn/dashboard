@@ -10,6 +10,7 @@ import ProportionSales from './components/ProportionSales';
 
 import { getTimeDistance } from './utils/utils';
 import type { AnalysisData } from './data.d';
+import TopSearch from './components/TopSearch';
 
 type RangePickerValue = RangePickerProps<moment.Moment>['value'];
 
@@ -56,7 +57,7 @@ class Home extends Component<HomeProps, HomeState> {
 
   render() {
     const { homeAndHome, loading } = this.props;
-    const { visitData, salesTypeData } = homeAndHome;
+    const { visitData, salesTypeData, serverData } = homeAndHome;
 
     return (
       <PageContainer>
@@ -71,6 +72,9 @@ class Home extends Component<HomeProps, HomeState> {
             >
               <Col xl={12} lg={24} md={24} sm={24} xs={24}>
                 <ProportionSales loading={loading} salesPieData={salesTypeData} />
+              </Col>
+              <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+                <TopSearch loading={loading} searchData={serverData} />
               </Col>
             </Row>
           </React.Fragment>
