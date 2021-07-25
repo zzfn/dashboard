@@ -1,8 +1,6 @@
 import { Card, Col, DatePicker, Row, Tabs } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi';
 import type { RangePickerProps } from 'antd/es/date-picker/generatePicker';
 import type moment from 'moment';
-
 import numeral from 'numeral';
 import type { VisitDataType } from '../data.d';
 import { Bar } from './Charts';
@@ -10,11 +8,14 @@ import styles from '../style.less';
 
 const { RangePicker } = DatePicker;
 const { TabPane } = Tabs;
+const rankingListData: {
+  title: string;
+  total: number;
+}[] = [];
 
-const rankingListData: { title: string; total: number }[] = [];
 for (let i = 0; i < 7; i += 1) {
   rankingListData.push({
-    title: formatMessage({ id: 'homeandhome.analysis.test' }, { no: i }),
+    title: '工专路 {no} 号店',
     total: 323234,
   });
 }
@@ -36,49 +37,50 @@ const SalesCard = ({
   handleRangePickerChange: (dates: RangePickerValue, dateStrings: [string, string]) => void;
   selectDate: (key: 'today' | 'week' | 'month' | 'year') => void;
 }) => (
-  <Card loading={loading} bordered={false} bodyStyle={{ padding: 0 }}>
+  <Card
+    loading={loading}
+    bordered={false}
+    bodyStyle={{
+      padding: 0,
+    }}
+  >
     <div className={styles.salesCard}>
       <Tabs
         tabBarExtraContent={
           <div className={styles.salesExtraWrap}>
             <div className={styles.salesExtra}>
               <a className={isActive('today')} onClick={() => selectDate('today')}>
-                <FormattedMessage id="homeandhome.analysis.all-day" defaultMessage="All Day" />
+                今日
               </a>
               <a className={isActive('week')} onClick={() => selectDate('week')}>
-                <FormattedMessage id="homeandhome.analysis.all-week" defaultMessage="All Week" />
+                本周
               </a>
               <a className={isActive('month')} onClick={() => selectDate('month')}>
-                <FormattedMessage id="homeandhome.analysis.all-month" defaultMessage="All Month" />
+                本月
               </a>
               <a className={isActive('year')} onClick={() => selectDate('year')}>
-                <FormattedMessage id="homeandhome.analysis.all-year" defaultMessage="All Year" />
+                全年
               </a>
             </div>
             <RangePicker
               value={rangePickerValue}
               onChange={handleRangePickerChange}
-              style={{ width: 256 }}
+              style={{
+                width: 256,
+              }}
             />
           </div>
         }
         size="large"
-        tabBarStyle={{ marginBottom: 24 }}
+        tabBarStyle={{
+          marginBottom: 24,
+        }}
       >
         <TabPane tab={'热门文章'} key="sales">
           <Row>
             <Col xl={16} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesBar}>
-                <Bar
-                  height={295}
-                  title={
-                    <FormattedMessage
-                      id="homeandhome.analysis.sales-trend"
-                      defaultMessage="Sales Trend"
-                    />
-                  }
-                  data={salesData}
-                />
+                <Bar height={295} title="销售趋势" data={salesData} />
               </div>
             </Col>
             <Col xl={8} lg={12} md={12} sm={24} xs={24}>
