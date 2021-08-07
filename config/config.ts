@@ -29,9 +29,7 @@ export default defineConfig({
   dynamicImport: {
     loading: '@ant-design/pro-layout/es/PageLoading',
   },
-  targets: {
-    ie: 11,
-  },
+  targets: {},
   // umi routes: https://umijs.org/docs/routing
   routes,
   // Theme for antd: https://ant.design/docs/react/customize-theme-cn
@@ -47,6 +45,7 @@ export default defineConfig({
   manifest: {
     basePath: '/',
   },
+  webpack5: {},
   // Fast Refresh 热更新
   fastRefresh: {},
 });
