@@ -55,19 +55,6 @@ const TableList: React.FC = () => {
       hideInSearch: true,
     },
     {
-      title: '图片',
-      dataIndex: 'img',
-      hideInSearch: true,
-      render: (text) =>
-        text && typeof text === 'string' ? (
-          <img
-            style={{ width: '20px' }}
-            src={`${text}?imageView2/5/w/20/h/20/format/webp/interlace/1/q/75`}
-            alt={text}
-          />
-        ) : null,
-    },
-    {
       title: '备注',
       dataIndex: 'remark',
       hideInSearch: true,

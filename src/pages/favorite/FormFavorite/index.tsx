@@ -99,18 +99,6 @@ const FormFavorite: FC = () => {
             <SelectCode placeholder={'请选择分类'} code={'FAVORITE'} />
           </FormItem>
           <FormItem
-            label={'图片'}
-            name="img"
-            rules={[
-              {
-                required: true,
-                message: '请输入图片',
-              },
-            ]}
-          >
-            <Input placeholder={'请输入图片'} />
-          </FormItem>
-          <FormItem
             label={'排序号'}
             name="orderNum"
             rules={[
