@@ -3,7 +3,6 @@ import type { RangePickerProps } from 'antd/es/date-picker/generatePicker';
 import type moment from 'moment';
 import numeral from 'numeral';
 import type { VisitDataType } from '../data.d';
-import { Bar } from './Charts';
 import styles from '../style.less';
 
 const { RangePicker } = DatePicker;
@@ -24,7 +23,6 @@ type RangePickerValue = RangePickerProps<moment.Moment>['value'];
 
 const SalesCard = ({
   rangePickerValue,
-  salesData,
   isActive,
   handleRangePickerChange,
   loading,
@@ -78,11 +76,6 @@ const SalesCard = ({
       >
         <TabPane tab={'热门文章'} key="sales">
           <Row>
-            <Col xl={16} lg={12} md={12} sm={24} xs={24}>
-              <div className={styles.salesBar}>
-                <Bar height={295} title="销售趋势" data={salesData} />
-              </div>
-            </Col>
             <Col xl={8} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesRank}>
                 <h4 className={styles.rankingTitle}>文章浏览量排行</h4>
