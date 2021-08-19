@@ -21,6 +21,10 @@ const TableList: React.FC = () => {
       dataIndex: 'ip',
     },
     {
+      title: '时间',
+      dataIndex: 'time',
+    },
+    {
       title: 'visitorId',
       dataIndex: 'visitorId',
     },
