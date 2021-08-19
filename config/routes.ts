@@ -72,6 +72,12 @@ export default [
     component: './talk/FormTalk',
   },
   {
+    name: '日志查询',
+    icon: 'AlertOutlined',
+    path: '/monitor',
+    component: './monitor/ListMonitor',
+  },
+  {
     component: './404',
   },
 ];
