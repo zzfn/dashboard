@@ -16,9 +16,10 @@ export async function getAll() {
     method: 'get',
   });
 }
-export async function getServerInfo() {
+export async function getServerInfo(params: any) {
   return http({
-    url: '/trace/server/info',
+    url: '/system/os',
     method: 'get',
+    params,
   });
 }

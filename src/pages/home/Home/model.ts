@@ -39,11 +39,13 @@ const Model: ModelType = {
     *fetch(_, { call, put }) {
       const { data } = yield call(getTags);
       const { data: a } = yield call(getAll);
-      const { data: server } = yield call(getServerInfo);
+      const names = ['a', 'b', 'c', 'd'];
+      const list = yield names.map((name) => call(getServerInfo, { server: name }));
+      const server = list.map((item: any) => item.data);
       yield put({
         type: 'save',
         payload: {
-          serverData: server,
+          serverData: { servers: server },
           visitData: a,
           salesTypeData: data.map((n: any) => ({ x: n.tag, y: n.count })),
         },
