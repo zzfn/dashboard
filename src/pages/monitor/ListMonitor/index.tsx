@@ -49,9 +49,9 @@ const TableList: React.FC = () => {
   const handleQuery = async (params: any) => {
     const { data } = await fetchList({ ...params });
     return {
-      data,
+      data: data.list,
       success: true,
-      total: data.length,
+      total: data.count,
     };
   };
   return (
