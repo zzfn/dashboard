@@ -25,6 +25,11 @@ const TableList: React.FC = () => {
       dataIndex: 'time',
     },
     {
+      title: '性能指标',
+      renderText: (val: string, record) =>
+        `${record.name}-${Number.parseFloat(record.value).toFixed(3)}ms`,
+    },
+    {
       title: 'visitorId',
       dataIndex: 'visitorId',
     },

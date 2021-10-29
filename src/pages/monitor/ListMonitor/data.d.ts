@@ -8,6 +8,7 @@ export type TableListItem = {
   href: string;
   avatar: string;
   name: string;
+  value: string;
   owner: string;
   desc: string;
   callNo: number;
