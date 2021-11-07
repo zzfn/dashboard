@@ -25,7 +25,7 @@ const handleQueryRule = async ({ params = {}, sorter = {} }: any) => {
     total,
   };
 };
-const TableList: React.FC<{}> = () => {
+const TableList: React.FC = () => {
   const access = useAccess();
   const actionRef = useRef<ActionType>();
   const handleRemove = (row: TableListItem) => async () => {
@@ -115,7 +115,6 @@ const TableList: React.FC<{}> = () => {
         headerTitle="查询表格"
         actionRef={actionRef}
         rowKey="id"
-        search={{ span: 4 }}
         toolBarRender={() => [
           <Access accessible={access.canAdmin}>
             <Button
