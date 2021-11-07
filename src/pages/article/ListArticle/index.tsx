@@ -18,7 +18,7 @@ const handleQueryRule = async ({ params = {}, sorter = {} }: any) => {
   });
   const {
     data: { records, total },
-  } = await queryRule({ ...params, ...sort, isOnlyRelease: false });
+  } = await queryRule({ ...params, ...sort });
   return {
     data: records,
     success: true,
@@ -44,6 +44,11 @@ const TableList: React.FC<{}> = () => {
     }
   };
   const columns: ProColumns<TableListItem>[] = [
+    {
+      title: 'id',
+      dataIndex: 'id',
+      hideInTable: true,
+    },
     {
       title: '标题',
       dataIndex: 'title',
@@ -110,7 +115,7 @@ const TableList: React.FC<{}> = () => {
         headerTitle="查询表格"
         actionRef={actionRef}
         rowKey="id"
-        search={{ span: 6 }}
+        search={{ span: 4 }}
         toolBarRender={() => [
           <Access accessible={access.canAdmin}>
             <Button

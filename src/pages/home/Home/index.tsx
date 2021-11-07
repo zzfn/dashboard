@@ -63,7 +63,8 @@ class Home extends Component<HomeProps, HomeState> {
       <PageContainer>
         <GridContent>
           <React.Fragment>
-            <IntroduceRow loading={loading} visitData={visitData} />
+            <IntroduceRow title={'文章更新量'} loading={loading} visitData={visitData} />
+            <IntroduceRow title={'浏览量'} loading={loading} visitData={visitData} />
             <Row
               gutter={24}
               style={{

@@ -4,7 +4,7 @@ import type { TableListParams } from './data.d';
 
 export async function queryRule(params?: TableListParams): Promise<any> {
   return http({
-    url: '/article/non/page',
+    url: '/article/page',
     method: 'get',
     params,
   });

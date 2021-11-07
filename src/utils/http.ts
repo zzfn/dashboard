@@ -39,6 +39,7 @@ instance.interceptors.request.use(
       ? `Bearer ${sessionStorage.getItem('uid')}`
       : null;
     Reflect.set(config.headers, 'Authorization', Authorization);
+    Reflect.set(config.headers, 'System', 'admin');
     return config;
   },
   (error) => {
