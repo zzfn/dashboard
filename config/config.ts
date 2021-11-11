@@ -6,7 +6,6 @@ import routes from './routes';
 export default defineConfig({
   hash: true,
   antd: {},
-  mfsu: {},
   dva: {
     hmr: true,
   },
@@ -40,6 +39,8 @@ export default defineConfig({
   manifest: {
     basePath: '/',
   },
+  nodeModulesTransform: { type: 'none' },
+  mfsu: {},
   webpack5: {},
   // Fast Refresh 热更新
   fastRefresh: {},

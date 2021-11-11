@@ -1,6 +1,6 @@
 {
-  "name": "ant-design-pro",
-  "version": "5.0.0-beta.2",
+  "name": "blog-admin",
+  "version": "1.0.0",
   "private": true,
   "description": "An out-of-box UI solution for enterprise applications",
   "scripts": {
@@ -23,10 +23,6 @@
     "start:no-ui": "cross-env UMI_UI=none UMI_ENV=dev umi dev",
     "start:pre": "cross-env REACT_APP_ENV=pre MOCK=none UMI_ENV=pre umi dev",
     "start:test": "cross-env REACT_APP_ENV=test MOCK=none UMI_ENV=test umi dev",
-    "pretest": "node ./tests/beforeTest",
-    "test": "umi test",
-    "test:all": "node ./tests/run-tests.js",
-    "test:component": "umi test ./src/components",
     "tsc": "tsc --noEmit"
   },
   "lint-staged": {
@@ -42,37 +38,27 @@
     "not ie <= 10"
   ],
   "dependencies": {
+    "@ant-design/charts": "^1.2.14",
     "@ant-design/icons": "^4.5.0",
     "@ant-design/pro-descriptions": "^1.6.8",
     "@ant-design/pro-form": "^1.18.3",
     "@ant-design/pro-layout": "6.19.1",
     "@ant-design/pro-table": "^2.30.8",
-    "@antv/data-set": "^0.11.0",
     "@bytemd/plugin-gfm": "^1.9.2",
     "@bytemd/react": "^1.9.2",
-    "@types/lodash.debounce": "^4.0.6",
     "@types/lodash.isequal": "^4.5.5",
     "@umijs/route-utils": "^1.0.36",
     "antd": "^4.14.0",
     "axios": "^0.21.1",
-    "bizcharts": "^3.5.3-beta.0",
-    "bizcharts-plugin-slider": "^2.1.1-beta.1",
     "classnames": "^2.2.6",
-    "dva": "^2.6.0-beta.22",
     "lodash": "^4.17.11",
-    "lodash.debounce": "^4.0.8",
-    "lodash.isequal": "^4.5.0",
     "moment": "^2.25.3",
-    "numeral": "^2.0.6",
     "omit.js": "^2.0.2",
-    "prop-types": "^15.5.10",
     "react": "^17.0.0",
     "react-dev-inspector": "^1.1.1",
     "react-dom": "^17.0.0",
-    "react-fittext": "^1.0.0",
     "react-helmet-async": "^1.0.4",
-    "umi": "^3.5.13",
-    "umi-request": "^1.0.8"
+    "umi": "^3.5.13"
   },
   "devDependencies": {
     "@ant-design/pro-cli": "^2.0.2",
@@ -109,6 +95,6 @@
     "node": ">=10.0.0"
   },
   "gitHooks": {
-    "commit-msg": "node ./node_modules/@umijs/fabric/dist/verifyCommit.js"
+    "commit-msg": "fabric verify-commit"
   }
 }
