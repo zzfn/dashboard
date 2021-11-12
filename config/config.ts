@@ -4,6 +4,7 @@ import defaultSettings from './defaultSettings';
 import routes from './routes';
 
 export default defineConfig({
+  base: 'blog-admin',
   hash: true,
   antd: {},
   dva: {
