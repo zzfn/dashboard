@@ -4,7 +4,8 @@ import defaultSettings from './defaultSettings';
 import routes from './routes';
 
 export default defineConfig({
-  publicPath: process.env.NODE_ENV === 'production' ? '/blog-admin/' : '/',
+  publicPath:
+    process.env.NODE_ENV === 'production' ? 'https://oss-zzf.zzfzzf.com/blog-admin/' : '/',
   hash: true,
   antd: {},
   dva: {
