@@ -4,7 +4,6 @@ import { defineConfig } from 'umi';
 export default defineConfig({
   define: {
     API_URL: 'http://localhost:8060',
-    KOA_URL: 'http://localhost:3000',
   },
   plugins: [
     // https://github.com/zthxxx/react-dev-inspector

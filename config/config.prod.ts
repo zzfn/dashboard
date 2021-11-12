@@ -4,6 +4,5 @@ import { defineConfig } from 'umi';
 export default defineConfig({
   define: {
     API_URL: 'https://api.zzfzzf.com',
-    KOA_URL: 'https://server.zzfzzf.com',
   },
 });

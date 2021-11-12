@@ -15,12 +15,12 @@ export default [
       },
     ],
   },
-  // {
-  //   name: '首页',
-  //   icon: 'dashboard',
-  //   path: '/home',
-  //   component: './home/Home',
-  // },
+  {
+    name: '工作台',
+    icon: 'smile',
+    path: '/workplace',
+    component: './Workplace',
+  },
   {
     name: '文章列表',
     icon: 'EditOutlined',
@@ -42,7 +42,7 @@ export default [
   },
   {
     path: '/',
-    redirect: '/home',
+    redirect: '/workplace',
   },
   {
     name: '编辑文章',
@@ -76,12 +76,6 @@ export default [
     icon: 'AlertOutlined',
     path: '/monitor',
     component: './monitor/ListMonitor',
-  },
-  {
-    name: '工作台',
-    icon: 'smile',
-    path: '/workplace',
-    component: './Workplace',
   },
   {
     component: './404',
