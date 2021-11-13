@@ -19,7 +19,7 @@ export default [
     name: '工作台',
     icon: 'smile',
     path: '/workplace',
-    component: './Workplace',
+    component: './workplace',
   },
   {
     name: '文章列表',

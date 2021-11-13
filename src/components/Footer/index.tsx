@@ -4,18 +4,18 @@ import { DefaultFooter } from '@ant-design/pro-layout';
 export default () => {
   return (
     <DefaultFooter
-      copyright={`${new Date().getFullYear()} 蚂蚁集团体验技术部出品`}
+      copyright={`${new Date().getFullYear()} zzfzzf`}
       links={[
         {
-          key: 'Ant Design Pro',
-          title: 'Ant Design Pro',
-          href: 'https://pro.ant.design',
+          key: 'zzfzzf.com',
+          title: 'zzfzzf.com',
+          href: 'https://zzfzzf.com',
           blankTarget: true,
         },
         {
           key: 'github',
           title: <GithubOutlined />,
-          href: 'https://github.com/ant-design/ant-design-pro',
+          href: 'https://github.com/zzfn/dashboard',
           blankTarget: true,
         },
         {

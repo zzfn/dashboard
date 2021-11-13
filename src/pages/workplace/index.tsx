@@ -66,13 +66,13 @@ const PageHeaderContent: FC<{ currentUser: Partial<CurrentUser> }> = ({ currentU
 const ExtraContent: FC<Record<string, any>> = () => (
   <div className={styles.extraContent}>
     <div className={styles.statItem}>
-      <Statistic title="项目数" value={56} />
+      <Statistic title="文章数" value={56} />
     </div>
     <div className={styles.statItem}>
-      <Statistic title="团队内排名" value={8} suffix="/ 24" />
+      <Statistic title="今访问量" value={8} />
     </div>
     <div className={styles.statItem}>
-      <Statistic title="项目访问" value={2223} />
+      <Statistic title="总访问量" value={2223} />
     </div>
   </div>
 );
