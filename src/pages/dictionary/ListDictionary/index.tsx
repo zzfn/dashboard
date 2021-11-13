@@ -26,7 +26,7 @@ const handleAdd = async (fields: TableListItem) => {
     return false;
   }
 };
-const handleQueryRule = async (params: TableListParams) => {
+const handleQueryRule: any = async (params: TableListParams) => {
   const { data } = await queryRule(params);
   return {
     data,
@@ -117,7 +117,7 @@ const TableList: React.FC<{}> = () => {
             console.log(key);
           },
         }}
-        request={(params, sorter, filter) => handleQueryRule({ ...params, sorter, filter, code })}
+        request={handleQueryRule}
         columns={columns}
       />
     </PageContainer>

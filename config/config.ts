@@ -32,9 +32,7 @@ export default defineConfig({
   theme: {
     'primary-color': defaultSettings.primaryColor,
   },
-  // esbuild is father build tools
-  // https://umijs.org/plugins/plugin-esbuild
-  // esbuild: {},
+  esbuild: {},
   title: false,
   ignoreMomentLocale: true,
   manifest: {

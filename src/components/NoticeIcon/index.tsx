@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Tag, message } from 'antd';
 import { groupBy } from 'lodash';
 import moment from 'moment';
 import { useModel } from 'umi';
-import { getNotices } from '@/services/ant-design-pro/api';
 
 import NoticeIcon from './NoticeIcon';
 import styles from './index.less';
@@ -74,10 +73,6 @@ const NoticeIconView = () => {
   const { initialState } = useModel('@@initialState');
   const { currentUser } = initialState || {};
   const [notices, setNotices] = useState<API.NoticeIconItem[]>([]);
-
-  useEffect(() => {
-    getNotices().then(({ data }) => setNotices(data || []));
-  }, []);
 
   const noticeData = getNoticeData(notices);
   const unreadMsg = getUnreadData(noticeData || {});

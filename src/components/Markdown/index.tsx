@@ -1,6 +1,7 @@
 import 'bytemd/dist/index.min.css';
 import { Editor } from '@bytemd/react';
 import gfm from '@bytemd/plugin-gfm';
+import './index.less';
 
 const plugins = [
   gfm(),
