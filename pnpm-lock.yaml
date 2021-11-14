@@ -2,52 +2,52 @@ lockfileVersion: 5.3
 
 specifiers:
   '@ant-design/charts': ^1.2.14
-  '@ant-design/icons': ^4.5.0
-  '@ant-design/pro-cli': ^2.0.2
-  '@ant-design/pro-descriptions': ^1.6.8
-  '@ant-design/pro-form': ^1.18.3
+  '@ant-design/icons': ^4.7.0
+  '@ant-design/pro-cli': ^2.1.5
+  '@ant-design/pro-descriptions': ^1.9.30
+  '@ant-design/pro-form': ^1.47.0
   '@ant-design/pro-layout': 6.19.1
-  '@ant-design/pro-table': ^2.30.8
-  '@bytemd/plugin-gfm': ^1.9.2
-  '@bytemd/react': ^1.9.2
-  '@types/express': ^4.17.0
-  '@types/history': ^4.7.2
-  '@types/jest': ^26.0.0
-  '@types/lodash': ^4.14.144
-  '@types/react': ^17.0.0
-  '@types/react-dom': ^17.0.0
-  '@types/react-helmet': ^6.1.0
-  '@umijs/fabric': ^2.5.2
-  '@umijs/plugin-blocks': ^2.0.5
-  '@umijs/plugin-esbuild': ^1.0.1
-  '@umijs/preset-ant-design-pro': ^1.2.0
-  '@umijs/preset-react': ^1.7.4
-  '@umijs/route-utils': ^1.0.36
-  '@umijs/yorkie': ^2.0.3
-  antd: ^4.14.0
-  axios: ^0.21.1
+  '@ant-design/pro-table': ^2.56.9
+  '@bytemd/plugin-gfm': ^1.10.13
+  '@bytemd/react': ^1.10.13
+  '@types/express': ^4.17.13
+  '@types/history': ^4.7.9
+  '@types/jest': ^26.0.24
+  '@types/lodash': ^4.14.176
+  '@types/react': ^17.0.34
+  '@types/react-dom': ^17.0.11
+  '@types/react-helmet': ^6.1.4
+  '@umijs/fabric': ^2.8.1
+  '@umijs/plugin-blocks': ^2.2.2
+  '@umijs/plugin-esbuild': ^1.4.1
+  '@umijs/preset-ant-design-pro': ^1.3.3
+  '@umijs/preset-react': ^1.8.27
+  '@umijs/route-utils': ^1.0.37
+  '@umijs/yorkie': ^2.0.5
+  antd: ^4.16.13
+  axios: ^0.21.4
   bytemd: ^1.10.13
   carlo: ^0.9.46
-  classnames: ^2.2.6
-  cross-env: ^7.0.0
-  cross-port-killer: ^1.1.1
-  detect-installer: ^1.0.1
+  classnames: ^2.3.1
+  cross-env: ^7.0.3
+  cross-port-killer: ^1.3.0
+  detect-installer: ^1.0.2
   enzyme: ^3.11.0
-  eslint: ^7.1.0
+  eslint: ^7.32.0
   express: ^4.17.1
-  lint-staged: ^10.0.0
-  lodash: ^4.17.11
-  moment: ^2.25.3
+  lint-staged: ^10.5.4
+  lodash: ^4.17.21
+  moment: ^2.29.1
   omit.js: ^2.0.2
-  prettier: ^2.0.1
+  prettier: ^2.4.1
   puppeteer-core: ^8.0.0
-  react: ^17.0.0
-  react-dev-inspector: ^1.1.1
-  react-dom: ^17.0.0
-  react-helmet-async: ^1.0.4
-  stylelint: ^13.0.0
-  typescript: ^4.2.2
-  umi: ^3.5.13
+  react: ^17.0.2
+  react-dev-inspector: ^1.7.1
+  react-dom: ^17.0.2
+  react-helmet-async: ^1.1.2
+  stylelint: ^13.13.1
+  typescript: ^4.4.4
+  umi: ^3.5.20
 
 dependencies:
   '@ant-design/charts': 1.2.14_react-dom@17.0.2+react@17.0.2
@@ -838,7 +838,7 @@ packages:
       '@babel/compat-data': 7.16.0
       '@babel/core': 7.16.0
       '@babel/helper-validator-option': 7.14.5
-      browserslist: 4.17.6
+      browserslist: 4.18.0
       semver: 6.3.0
 
   /@babel/helper-create-class-features-plugin/7.16.0_@babel+core@7.16.0:
@@ -2950,14 +2950,6 @@ packages:
       '@types/history': 4.7.9
       '@types/react': 17.0.34
       '@types/react-router': 5.1.17
-    dev: false
-
-  /@types/react-router-config/5.0.3:
-    resolution: {integrity: sha512-38vpjXic0+E2sIBEKUe+RrCmbc8RqcQhNV8OmU3KUcwgy/yzTeo67MhllP+0zjZWNr7Lhw+RnUkL0hzkf63nUQ==}
-    dependencies:
-      '@types/history': 4.7.9
-      '@types/react': 17.0.34
-      '@types/react-router': 5.1.17
 
   /@types/react-router-dom/5.1.7:
     resolution: {integrity: sha512-D5mHD6TbdV/DNHYsnwBTv+y73ei+mMjrkGrla86HthE4/PVvL1J94Bu3qABU+COXzpL23T1EZapVVpwHuBXiUg==}
@@ -3666,7 +3658,7 @@ packages:
     dependencies:
       '@types/react': 16.14.20
       '@types/react-dom': 16.9.14
-      '@types/react-router-config': 5.0.3
+      '@types/react-router-config': 5.0.2
       '@umijs/runtime': 3.5.20_react@16.14.0
       react: 16.14.0
       react-dom: 16.14.0_react@16.14.0
@@ -3683,7 +3675,7 @@ packages:
     dependencies:
       '@types/react': 16.14.20
       '@types/react-dom': 16.9.14
-      '@types/react-router-config': 5.0.3
+      '@types/react-router-config': 5.0.2
       '@umijs/runtime': 3.5.20_react@16.14.0
       react: 16.14.0
       react-dom: 16.14.0_react@16.14.0
@@ -3700,7 +3692,7 @@ packages:
     dependencies:
       '@types/react': 16.14.20
       '@types/react-dom': 16.9.14
-      '@types/react-router-config': 5.0.3
+      '@types/react-router-config': 5.0.2
       '@umijs/runtime': 3.5.20_react@17.0.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -3986,8 +3978,8 @@ packages:
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
 
-  /ajv/8.7.1:
-    resolution: {integrity: sha512-gPpOObTO1QjbnN1sVMjJcp1TF9nggMfO4MBR5uQl6ZVTOaEPq5i4oq/6R9q2alMMPB3eg53wFv1RuJBLuxf3Hw==}
+  /ajv/8.8.0:
+    resolution: {integrity: sha512-L+cJ/+pkdICMueKR6wIx3VP2fjIx3yAhuvadUv/osv9yFD7OVZy442xFF+Oeu3ZvmhBGQzoF6mTSt+LUWBmGQg==}
     dependencies:
       fast-deep-equal: 3.1.3
       json-schema-traverse: 1.0.0
@@ -4314,7 +4306,7 @@ packages:
     resolution: {integrity: sha512-eM9d/swFopRt5gdJ7jrpCwgvEMIayITpojhkkSMRsFHYuH5bkSQ4p/9qTEHtmNudUZh22Tehu7I6CxAW0IXTKA==}
     hasBin: true
     dependencies:
-      browserslist: 4.17.6
+      browserslist: 4.18.0
       caniuse-lite: 1.0.30001280
       normalize-range: 0.1.2
       num2fraction: 1.2.2
@@ -4687,8 +4679,8 @@ packages:
       node-releases: 1.1.77
     dev: false
 
-  /browserslist/4.17.6:
-    resolution: {integrity: sha512-uPgz3vyRTlEiCv4ee9KlsKgo2V6qPk7Jsn0KAn2OBqbqKo3iNcPEC1Ti6J4dwnz+aIRfEEEuOzC9IBk8tXUomw==}
+  /browserslist/4.18.0:
+    resolution: {integrity: sha512-ER2M0g5iAR84fS/zjBDqEgU6iO5fS9JI2EkHr5zxDxYEFk3LjhU9Vpp/INb6RMQphxko7PDV1FH38H/qVP5yCA==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
@@ -5275,7 +5267,7 @@ packages:
   /core-js-compat/3.19.1:
     resolution: {integrity: sha512-Q/VJ7jAF/y68+aUsQJ/afPOewdsGkDtcMb40J8MbuWKlK3Y+wtHq8bTHKPj2WKWLIqmS5JhHs4CzHtz6pT2W6g==}
     dependencies:
-      browserslist: 4.17.6
+      browserslist: 4.18.0
       semver: 7.0.0
     dev: true
 
@@ -10670,7 +10662,7 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       autoprefixer: 9.8.8
-      browserslist: 4.17.6
+      browserslist: 4.18.0
       caniuse-lite: 1.0.30001280
       css-blank-pseudo: 0.1.4
       css-has-pseudo: 0.10.0
@@ -13587,7 +13579,7 @@ packages:
     resolution: {integrity: sha512-5DkIxeA7XERBqMwJq0aHZOdMadBx4e6eDoFRuyT5VR82J0Ycg2DwM6GfA/EQAhJ+toRTaS1lIdSQCqgrmhPnlw==}
     engines: {node: '>=10.0.0'}
     dependencies:
-      ajv: 8.7.1
+      ajv: 8.8.0
       lodash.truncate: 4.4.2
       slice-ansi: 4.0.0
       string-width: 4.2.3
