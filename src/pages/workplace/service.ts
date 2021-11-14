@@ -6,3 +6,9 @@ export async function getPerformance(): Promise<any> {
     method: 'get',
   });
 }
+export async function getHomeOverview(): Promise<any> {
+  return http({
+    url: '/overview/getHomeOverview',
+    method: 'get',
+  });
+}

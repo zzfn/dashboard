@@ -49,6 +49,7 @@ export default [
     icon: 'smile',
     path: '/form-article',
     hideInMenu: true,
+    access: 'canAdmin',
     component: './article/FormArticle',
   },
   {

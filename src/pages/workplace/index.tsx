@@ -1,42 +1,15 @@
 import type { FC } from 'react';
-import { Avatar, Card, Col, Skeleton, Row, Statistic } from 'antd';
-import { Radar } from '@ant-design/charts';
+import { Avatar, Card, Col, Skeleton, Row, Statistic, Table } from 'antd';
+import { Pie, WordCloud } from '@ant-design/charts';
 
-import { Link } from 'umi';
 import { PageContainer } from '@ant-design/pro-layout';
 import EditableLinkGroup from './components/EditableLinkGroup';
 import styles from './style.less';
 import type { CurrentUser } from './data.d';
-import { getPerformance } from './service';
+import { getHomeOverview } from './service';
 import { useModel } from '@@/plugin-model/useModel';
 import { useEffect, useState } from 'react';
-
-const links = [
-  {
-    title: '操作一',
-    href: '',
-  },
-  {
-    title: '操作二',
-    href: '',
-  },
-  {
-    title: '操作三',
-    href: '',
-  },
-  {
-    title: '操作四',
-    href: '',
-  },
-  {
-    title: '操作五',
-    href: '',
-  },
-  {
-    title: '操作六',
-    href: '',
-  },
-];
+import { columns, links, hello } from './standard';
 
 const PageHeaderContent: FC<{ currentUser: Partial<CurrentUser> }> = ({ currentUser }) => {
   const loading = currentUser && Object.keys(currentUser).length;
@@ -50,10 +23,8 @@ const PageHeaderContent: FC<{ currentUser: Partial<CurrentUser> }> = ({ currentU
       </div>
       <div className={styles.content}>
         <div className={styles.contentTitle}>
-          早安，
-          {/*@ts-ignore*/}
-          {currentUser?.nickName as any}
-          ，祝你开心每一天！
+          {hello.get(Math.floor(new Date().getHours() / 6)).time}，{/*@ts-ignore*/}
+          {currentUser?.nickName as any}，{hello.get(Math.floor(new Date().getHours() / 6)).tip}
         </div>
         <div>
           {currentUser.title} |{currentUser.group}
@@ -63,10 +34,14 @@ const PageHeaderContent: FC<{ currentUser: Partial<CurrentUser> }> = ({ currentU
   );
 };
 
-const ExtraContent: FC<Record<string, any>> = () => (
+const ExtraContent: FC<any> = ({ articleCount }) => (
   <div className={styles.extraContent}>
     <div className={styles.statItem}>
-      <Statistic title="文章数" value={56} />
+      <Statistic
+        title="文章数"
+        value={articleCount.releaseCount}
+        suffix={`/ ${articleCount.allCount}`}
+      />
     </div>
     <div className={styles.statItem}>
       <Statistic title="今访问量" value={8} />
@@ -78,163 +53,82 @@ const ExtraContent: FC<Record<string, any>> = () => (
 );
 
 const Workplace: FC = () => {
-  const [perform, setPerform] = useState([]);
+  const [dataSource, setDataSource] = useState<any>({ tags: [] });
+  const [loading, setLoading] = useState(true);
   const { initialState } = useModel('@@initialState');
   const initial = async () => {
-    const socket = new WebSocket('ws://localhost:8060/websocket');
-
-    socket.onopen = function () {
-      console.log('连接成功');
-    };
-    socket.onclose = function () {
-      console.log('退出连接');
-    };
-
-    socket.onmessage = function (event) {
-      console.log('收到消息' + event.data);
-    };
-
-    socket.onerror = function () {
-      console.log('连接出错');
-    };
-
-    window.onbeforeunload = function () {
-      socket.close();
-    };
-    const { data } = await getPerformance();
-    setPerform(data);
+    const { data } = await getHomeOverview();
+    setLoading(false);
+    setDataSource(data);
+    // const socket = new WebSocket('ws://localhost:8060/websocket');
+    //
+    // socket.onopen = function () {
+    //   console.log('连接成功');
+    // };
+    // socket.onclose = function () {
+    //   console.log('退出连接');
+    // };
+    //
+    // socket.onmessage = function (event) {
+    //   console.log('收到消息' + event.data);
+    // };
+    //
+    // socket.onerror = function () {
+    //   console.log('连接出错');
+    // };
+    //
+    // window.onbeforeunload = function () {
+    //   socket.close();
+    // };
   };
 
-  // const renderActivities = (item: ActivitiesType) => {
-  //   const events = item.template.split(/@\{([^{}]*)\}/gi).map((key) => {
-  //     if (item[key]) {
-  //       return (
-  //         <a href={item[key].link} key={item[key].name}>
-  //           {item[key].name}
-  //         </a>
-  //       );
-  //     }
-  //     return key;
-  //   });
-  //   return (
-  //     <List.Item key={item.id}>
-  //       <List.Item.Meta
-  //         avatar={<Avatar src={item.user.avatar}/>}
-  //         title={
-  //           <span>
-  //             <a className={styles.username}>{item.user.name}</a>
-  //             &nbsp;
-  //             <span className={styles.event}>{events}</span>
-  //           </span>
-  //         }
-  //         description={
-  //           <span className={styles.datetime} title={item.updatedAt}>
-  //             {moment(item.updatedAt).fromNow()}
-  //           </span>
-  //         }
-  //       />
-  //     </List.Item>
-  //   );
-  // };
   useEffect(() => {
     initial().then();
   }, []);
   return (
     <PageContainer
+      loading={loading}
       content={<PageHeaderContent currentUser={initialState?.currentUser || ({} as any)} />}
-      extraContent={<ExtraContent />}
+      extraContent={<ExtraContent articleCount={dataSource} />}
     >
-      <Row gutter={24}>
+      <Row gutter={[24, 12]}>
         <Col xl={16} lg={24} md={24} sm={24} xs={24}>
-          <Card
-            className={styles.projectList}
-            style={{ marginBottom: 24 }}
-            title="进行中的项目"
-            bordered={false}
-            extra={<Link to="/">全部项目</Link>}
-            bodyStyle={{ padding: 0 }}
-          >
-            {/*{projectNotice.map((item) => (*/}
-            {/*  <Card.Grid className={styles.projectGrid} key={item.id}>*/}
-            {/*    <Card bodyStyle={{padding: 0}} bordered={false}>*/}
-            {/*      <Card.Meta*/}
-            {/*        title={*/}
-            {/*          <div className={styles.cardTitle}>*/}
-            {/*            <Avatar size="small" src={item.logo}/>*/}
-            {/*            <Link to={item.href}>{item.title}</Link>*/}
-            {/*          </div>*/}
-            {/*        }*/}
-            {/*        description={item.description}*/}
-            {/*      />*/}
-            {/*      <div className={styles.projectItemContent}>*/}
-            {/*        <Link to={item.memberLink}>{item.member || ''}</Link>*/}
-            {/*        {item.updatedAt && (*/}
-            {/*          <span className={styles.datetime} title={item.updatedAt}>*/}
-            {/*            {moment(item.updatedAt).fromNow()}*/}
-            {/*          </span>*/}
-            {/*        )}*/}
-            {/*      </div>*/}
-            {/*    </Card>*/}
-            {/*  </Card.Grid>*/}
-            {/*))}*/}
-          </Card>
-          <Card
-            bodyStyle={{ padding: 0 }}
-            bordered={false}
-            className={styles.activeCard}
-            title="动态"
-          >
-            {/*<List<ActivitiesType>*/}
-            {/*  loading={activitiesLoading}*/}
-            {/*  renderItem={(item) => renderActivities(item)}*/}
-            {/*  dataSource={activities}*/}
-            {/*  className={styles.activitiesList}*/}
-            {/*  size="large"*/}
-            {/*/>*/}
+          <Card title={'文章分类'}>
+            <Pie
+              label={{
+                type: 'outer',
+                content: '{name} {percentage}',
+              }}
+              radius={0.9}
+              data={dataSource.tags}
+              angleField={'count'}
+              colorField={'tag'}
+            />
           </Card>
         </Col>
-        <Col xl={8} lg={24} md={24} sm={24} xs={24}>
-          <Card
-            style={{ marginBottom: 24 }}
-            title="快速开始 / 便捷导航"
-            bordered={false}
-            bodyStyle={{ padding: 0 }}
-          >
-            <EditableLinkGroup onAdd={() => {}} links={links} linkElement={Link} />
+        <Col className={styles.right} xl={8} lg={24} md={24} sm={24} xs={24}>
+          <Card title="快速开始 / 便捷导航" bordered={false} bodyStyle={{ padding: 0 }}>
+            <EditableLinkGroup links={links} />
           </Card>
-          <Card
-            style={{ marginBottom: 24 }}
-            bordered={false}
-            title="前端性能监控"
-            loading={perform?.length === 0}
-          >
-            <div className={styles.chart}>
-              <Radar
-                height={343}
-                data={perform}
-                seriesField="item"
-                xField="name"
-                yField="value"
-                point={{}}
-                legend={{
-                  position: 'bottom',
-                }}
-              />
-            </div>
+          <Card bodyStyle={{ padding: 0 }} bordered={false} title="热门搜索">
+            <WordCloud
+              autoFit={false}
+              height={235}
+              data={dataSource.searchKeywords}
+              weightField={'score'}
+              wordField={'value'}
+            />
           </Card>
-          <Card bodyStyle={{ paddingTop: 12, paddingBottom: 12 }} bordered={false} title="团队">
-            <div className={styles.members}>
-              <Row gutter={48}>
-                {/*{projectNotice.map((item) => (*/}
-                {/*  <Col span={12} key={`members-item-${item.id}`}>*/}
-                {/*    <Link to={item.href}>*/}
-                {/*      <Avatar src={item.logo} size="small"/>*/}
-                {/*      <span className={styles.member}>{item.member}</span>*/}
-                {/*    </Link>*/}
-                {/*  </Col>*/}
-                {/*))}*/}
-              </Row>
-            </div>
+        </Col>
+        <Col xl={16} lg={24} md={24} sm={24} xs={24}>
+          <Card title={'性能指标(Last 30 days)'}>
+            <Table
+              pagination={false}
+              size={'small'}
+              rowKey={'id'}
+              dataSource={dataSource.performances}
+              columns={columns}
+            />
           </Card>
         </Col>
       </Row>

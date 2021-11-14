@@ -51,6 +51,9 @@ instance.interceptors.response.use(
     if (response.status !== 200) {
       message.error(msg.get(response.status)).then();
     }
+    if (response.data.code !== 0) {
+      message.error(response.data.msg).then();
+    }
     return response.data;
   },
   (error) => {
