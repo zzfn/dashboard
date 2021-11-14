@@ -44,10 +44,10 @@ const ExtraContent: FC<any> = ({ dataSource }) => (
       />
     </div>
     <div className={styles.statItem}>
-      <Statistic title="本日uv" value={dataSource.userCount?.todayUserView ?? 0} />
+      <Statistic title="本日uv" value={dataSource.userCount?.todayUniqueVisitor ?? 0} />
     </div>
     <div className={styles.statItem}>
-      <Statistic title="本日pv" value={dataSource.userCount?.todayUniqueVisitor ?? 0} />
+      <Statistic title="本日pv" value={dataSource.userCount?.todayPageView ?? 0} />
     </div>
     <div className={styles.statItem}>
       <Statistic title="总uv" value={dataSource.userCount?.allUniqueVisitor ?? 0} />
