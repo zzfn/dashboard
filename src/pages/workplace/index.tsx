@@ -34,20 +34,26 @@ const PageHeaderContent: FC<{ currentUser: Partial<CurrentUser> }> = ({ currentU
   );
 };
 
-const ExtraContent: FC<any> = ({ articleCount }) => (
+const ExtraContent: FC<any> = ({ dataSource }) => (
   <div className={styles.extraContent}>
     <div className={styles.statItem}>
       <Statistic
         title="文章数"
-        value={articleCount.releaseCount}
-        suffix={`/ ${articleCount.allCount}`}
+        value={dataSource.releaseCount}
+        suffix={`/ ${dataSource.allCount}`}
       />
     </div>
     <div className={styles.statItem}>
-      <Statistic title="今访问量" value={8} />
+      <Statistic title="本日uv" value={dataSource.userCount?.todayUserView ?? 0} />
     </div>
     <div className={styles.statItem}>
-      <Statistic title="总访问量" value={2223} />
+      <Statistic title="本日pv" value={dataSource.userCount?.todayUniqueVisitor ?? 0} />
+    </div>
+    <div className={styles.statItem}>
+      <Statistic title="总uv" value={dataSource.userCount?.allUniqueVisitor ?? 0} />
+    </div>
+    <div className={styles.statItem}>
+      <Statistic title="总pv" value={dataSource.userCount?.allPageView ?? 0} />
     </div>
   </div>
 );
@@ -89,7 +95,7 @@ const Workplace: FC = () => {
     <PageContainer
       loading={loading}
       content={<PageHeaderContent currentUser={initialState?.currentUser || ({} as any)} />}
-      extraContent={<ExtraContent articleCount={dataSource} />}
+      extraContent={<ExtraContent dataSource={dataSource} />}
     >
       <Row gutter={[24, 12]}>
         <Col xl={16} lg={24} md={24} sm={24} xs={24}>
