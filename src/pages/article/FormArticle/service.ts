@@ -2,7 +2,7 @@ import http from '@/utils/http';
 
 export async function saveArticle(data: any) {
   return http({
-    url: '/article/admin/save',
+    url: '/article/save',
     method: 'post',
     data,
   });

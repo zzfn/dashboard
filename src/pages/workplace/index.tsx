@@ -81,6 +81,26 @@ const Workplace: FC = () => {
   const [perform, setPerform] = useState([]);
   const { initialState } = useModel('@@initialState');
   const initial = async () => {
+    const socket = new WebSocket('ws://localhost:8060/websocket');
+
+    socket.onopen = function () {
+      console.log('连接成功');
+    };
+    socket.onclose = function () {
+      console.log('退出连接');
+    };
+
+    socket.onmessage = function (event) {
+      console.log('收到消息' + event.data);
+    };
+
+    socket.onerror = function () {
+      console.log('连接出错');
+    };
+
+    window.onbeforeunload = function () {
+      socket.close();
+    };
     const { data } = await getPerformance();
     setPerform(data);
   };

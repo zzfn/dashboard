@@ -1,5 +1,4 @@
 import { Button, Card, Form, Input, message, Space } from 'antd';
-import type { Dispatch } from 'dva';
 import { useLocation, history } from 'umi';
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
@@ -12,7 +11,6 @@ const FormItem = Form.Item;
 
 type FormArticleProps = {
   submitting: boolean;
-  dispatch: Dispatch;
 };
 
 const FormArticle: FC<FormArticleProps> = (props) => {

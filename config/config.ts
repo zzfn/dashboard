@@ -11,12 +11,10 @@ export default defineConfig({
     hmr: true,
   },
   layout: {
-    // https://umijs.org/zh-CN/plugins/plugin-layout
     locale: false,
     siderWidth: 208,
     ...defaultSettings,
   },
-  // https://umijs.org/zh-CN/plugins/plugin-locale
   locale: {
     default: 'zh-CN',
     antd: true,

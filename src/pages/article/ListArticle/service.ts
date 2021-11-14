@@ -9,9 +9,9 @@ export async function queryRule(params?: TableListParams): Promise<any> {
   });
 }
 
-export async function removeRule(params: { id: string; tag: string }) {
+export async function removeRule(params: { id: string }) {
   return http({
     method: 'delete',
-    url: `/article/non/${params.id}/${params.tag}`,
+    url: `/article/${params.id}`,
   });
 }
