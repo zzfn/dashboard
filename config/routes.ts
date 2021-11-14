@@ -40,10 +40,7 @@ export default [
     hideInMenu: true,
     component: './dictionary/ListDictionary',
   },
-  {
-    path: '/',
-    redirect: '/workplace',
-  },
+
   {
     name: '编辑文章',
     icon: 'smile',
@@ -77,6 +74,10 @@ export default [
     icon: 'AlertOutlined',
     path: '/monitor',
     component: './monitor/ListMonitor',
+  },
+  {
+    path: '/',
+    redirect: '/workplace',
   },
   {
     component: './404',
