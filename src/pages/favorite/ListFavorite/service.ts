@@ -3,7 +3,7 @@ import type { TableListParams, TableListItem } from './data.d';
 
 export async function queryRule(params?: TableListParams): Promise<any> {
   return http({
-    url: '/favorite/non/page',
+    url: '/favorite/page',
     method: 'get',
     params,
   });

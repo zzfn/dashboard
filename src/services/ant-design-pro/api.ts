@@ -22,7 +22,7 @@ export async function outLogin() {
 /** 登录接口 POST /api/login/account */
 export async function login(data: API.LoginParams, options?: { [key: string]: any }): Promise<any> {
   return http({
-    url: '/user/non/login',
+    url: '/user/login',
     method: 'post',
     data,
   });
