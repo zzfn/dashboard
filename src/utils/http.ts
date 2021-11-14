@@ -1,6 +1,7 @@
 import axios from 'axios';
 import type { AxiosRequestConfig } from 'axios';
 import { message } from 'antd';
+import { history } from 'umi';
 
 interface ResponseType {
   msg?: string;
@@ -53,6 +54,9 @@ instance.interceptors.response.use(
     }
     if (response.data.code !== 0) {
       message.error(response.data.msg).then();
+    }
+    if (response.data.code === 4001) {
+      history.push('/user/login');
     }
     return response.data;
   },
