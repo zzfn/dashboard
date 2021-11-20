@@ -26,12 +26,6 @@ const handleAdd = async (fields: TableListItem) => {
     return false;
   }
 };
-const handleQueryRule: any = async (params: TableListParams) => {
-  const { data } = await queryRule(params);
-  return {
-    data,
-  };
-};
 
 /**
  * 删除节点
@@ -45,6 +39,12 @@ const TableList: React.FC<{}> = () => {
   const [editableKeys, setEditableKeys] = useState<React.Key[]>([]);
   const location = useLocation();
   const { code } = (location as any).query;
+  const handleQueryRule: any = async (params: TableListParams) => {
+    const { data } = await queryRule({ ...params, code });
+    return {
+      data,
+    };
+  };
   const handleRemove = async (params: { id: string }) => {
     const hide = message.loading('正在删除');
     try {
