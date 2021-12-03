@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { Avatar, Card, Col, Skeleton, Row, Statistic, Table } from 'antd';
-import { Pie, WordCloud } from '@ant-design/charts';
+import { Pie, WordCloud, Line } from '@ant-design/charts';
 
 import { PageContainer } from '@ant-design/pro-layout';
 import EditableLinkGroup from './components/EditableLinkGroup';
@@ -40,7 +40,7 @@ const ExtraContent: FC<any> = ({ dataSource }) => (
       <Statistic
         title="文章数"
         value={dataSource.releaseCount}
-        suffix={`/ ${dataSource.allCount}`}
+        suffix={`/ ${dataSource.allCount || 0}`}
       />
     </div>
     <div className={styles.statItem}>
@@ -134,6 +134,30 @@ const Workplace: FC = () => {
               rowKey={'id'}
               dataSource={dataSource.performances}
               columns={columns}
+            />
+          </Card>
+        </Col>
+        <Col xl={8} lg={24} md={24} sm={24} xs={24}>
+          <Card title={'最近30日pv/uv'}>
+            <Line
+              data={dataSource.visitors ?? []}
+              xField={'time'}
+              yField={'value'}
+              seriesField={'type'}
+              xAxis={{ type: 'time' }}
+            />
+          </Card>
+        </Col>
+        <Col xl={24} lg={24} md={24} sm={24} xs={24}>
+          <Card title={'最近30日性能'}>
+            <Line
+              data={(dataSource.performancesAnalyze ?? []).map((item: any) => ({
+                ...item,
+                ...item._id,
+              }))}
+              xField={'day'}
+              yField={'avg'}
+              seriesField={'name'}
             />
           </Card>
         </Col>

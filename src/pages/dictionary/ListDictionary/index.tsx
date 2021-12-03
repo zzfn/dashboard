@@ -30,7 +30,6 @@ const handleAdd = async (fields: TableListItem) => {
 /**
  * 删除节点
  *
- * @param params
  */
 
 const TableList: React.FC<{}> = () => {

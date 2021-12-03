@@ -107,5 +107,5 @@ export type ActivitiesType = {
 export type RadarDataType = {
   label: string;
   name: string;
-  value: number;
+  value?: number;
 };
