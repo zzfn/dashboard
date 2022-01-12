@@ -4,6 +4,10 @@ import defaultSettings from './defaultSettings';
 import routes from './routes';
 
 export default defineConfig({
+  publicPath:
+    process.env.BUILD_TARGET === 'cdn'
+      ? 'https://zzf-dashboard.oss-cn-shanghai.aliyuncs.com/'
+      : '/',
   hash: true,
   antd: {},
   dva: {
