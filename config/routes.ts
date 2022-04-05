@@ -76,6 +76,12 @@ export default [
     component: './monitor/ListMonitor',
   },
   {
+    name: '图床',
+    icon: 'smile',
+    path: '/img',
+    component: './img/List',
+  },
+  {
     path: '/',
     redirect: '/workplace',
   },
