@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { useEffect, useState } from 'react';
-import {deleteFolder, delFile, listFiles} from '@/pages/img/List/service';
+import {deleteFolder, delFile, listFiles} from '@/pages/oss/List/service';
 import {Button, message} from "antd";
 import {DeleteOutlined} from "@ant-design/icons";
 import styles from './index.module.less'

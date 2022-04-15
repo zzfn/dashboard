@@ -63,13 +63,6 @@ export default [
     component: './dictionary/Dictionary',
   },
   {
-    name: '钉钉',
-    icon: 'smile',
-    path: '/form-talk',
-    access: 'canAdmin',
-    component: './talk/FormTalk',
-  },
-  {
     name: '日志查询',
     icon: 'AlertOutlined',
     path: '/monitor',
@@ -78,8 +71,8 @@ export default [
   {
     name: '图床',
     icon: 'smile',
-    path: '/img',
-    component: './img/List',
+    path: '/oss',
+    component: './oss/List',
   },
   {
     path: '/',
