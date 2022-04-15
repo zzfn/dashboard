@@ -8,9 +8,17 @@ export async function listFiles(params: any): Promise<any> {
   });
 }
 
-export async function botList(): Promise<any> {
+export async function delFile(data: any): Promise<any> {
   return http({
-    url: '/talk/all',
-    method: 'get',
+    url: '/oss/deleteFile',
+    method: 'delete',
+    data
+  });
+}
+export async function deleteFolder(data: any): Promise<any> {
+  return http({
+    url: '/oss/deleteFolder',
+    method: 'delete',
+    data
   });
 }
