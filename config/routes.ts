@@ -69,7 +69,7 @@ export default [
     component: './monitor/ListMonitor',
   },
   {
-    name: '图床',
+    name: '文件管理',
     icon: 'smile',
     path: '/oss',
     component: './oss/List',
